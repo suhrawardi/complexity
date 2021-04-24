@@ -1,9 +1,15 @@
 module Complexity
   using Plots
 
+  function fun(m, x)
+      return append!(m, isempty(m) ? x * 1.1 : last(m) * 1.1)
+  end
+
+  function plt(fn, xs)
+    plot(xs, reduce(fn, xs; init=Float64[]))
+  end
+
   function main()
-    x = 1:10;
-    y = rand(10);
-    plot(x, y)
+    plt(fun, 1:30)
   end
 end
